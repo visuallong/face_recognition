@@ -1,0 +1,9 @@
+opencv-python==4.5.5.62
+dlib==19.22.99
+cmake == 3.22.2
+tensorflow==2.8.0
+Sklearn==1.0.2
+Pillow==9.0.1
+Tkinter==0.1.0
+facenet_pytorch==2.5.2
+mediapipe
