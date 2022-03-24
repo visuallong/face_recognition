@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+storage/model/vgg_face_weights.h5

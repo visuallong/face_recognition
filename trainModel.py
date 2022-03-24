@@ -13,6 +13,8 @@ from sklearn.utils import shuffle
 import numpy as np
 import tensorflow as tf
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
+from featureExtraction import model as fe_model
+from keras.models import load_model
 
 
 def read_user_json():
@@ -101,5 +103,8 @@ def train_model_landmark(batch_size=24,lr=0.001,epochs=20):
         callbacks=callbacks_list,
         validation_split=0.2,
         )
+    fe_base_model = load_model(model_path)
+    x = fe_base_model.layers[-2].output
+    fe_model = Model(inputs=fe_base_model.input, outputs=x)
 
 # train_model_landmark()
