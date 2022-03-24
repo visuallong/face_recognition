@@ -289,7 +289,7 @@ class PageThree(tk.Frame):
         self.dropdown["menu"].config(bg="lightgrey")
         self.dropdown.grid(row=1, column=1)
         tk.Label(self.adv_frame, text="Learning Rate:").grid(row=2, column=0)
-        self.lr_var = tk.DoubleVar(value=0.01)
+        self.lr_var = tk.DoubleVar(value=0.001)
         self.lr_input = tk.Entry(self.adv_frame, textvariable = self.lr_var)
         self.lr_input.grid(row=2, column=1)
         self.defaults_label = tk.Label(self.adv_frame, text="Reset defaults")
@@ -312,7 +312,10 @@ class PageThree(tk.Frame):
         self.methods_menu.grid_forget
 
     def train_model(self):
-        train_model_landmark()
+        epochs = self.epochs_var.get()
+        batch_size = self.batch_size_var.get()
+        lr = self.lr_var.get()
+        train_model_landmark(batch_size,lr,epochs)
 
     def train_classify_view(self, event):
         self.activate_classify_method = self.method_classify_var.get()
