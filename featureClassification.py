@@ -52,3 +52,9 @@ def compare(face_pixels):
     t1_stop = time.process_time()
     print("Recognize face time: " + str(t1_stop-t1_start))
     return label, min_dist
+
+
+# import cv2
+
+# x= cv2.imread(r'storage\imageBase\29-03-22-17-14-19_0\img-29-03-22-17-14-19_0.jpg')
+# print(compare(x))

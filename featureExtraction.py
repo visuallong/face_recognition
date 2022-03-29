@@ -17,6 +17,10 @@ import time
 
 
 feature_extraction_model_path = r'storage\model\feature_extraction_model\mobilefacenet.tflite'
+feature_extraction_model_url = 'https://drive.google.com/u/0/uc?id=1KXKX2rVAiHdwPCld2cNFoUrXCgq0Or3Q&export=download'
+if os.path.isfile(feature_extraction_model_path) != True:
+		print("mask_detector.h5 will be downloaded...")
+		gdown.download(url=feature_extraction_model_url, output=feature_extraction_model_path, quiet=False)
 interpreter = tf.lite.Interpreter(model_path=feature_extraction_model_path)
 interpreter.allocate_tensors()
 
@@ -47,7 +51,7 @@ def feature_extraction(pixels):
 	interpreter.invoke()
 	embedding = interpreter.get_tensor(embedding_index)
 	return embedding[0]
-  
+
 
 # import cv2
 # import time
