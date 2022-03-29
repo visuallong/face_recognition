@@ -115,7 +115,7 @@ def face_detector(pixels):
     # pixels = cv2.resize(pixels,(1000,1000),interpolation=cv2.INTER_CUBIC)
     image = pixels
     base_width, base_height = pixels.shape[1], pixels.shape[0]
-    image = cv2.resize(image,(300,300),interpolation=cv2.INTER_CUBIC)
+    # image = cv2.resize(image,(300,300),interpolation=cv2.INTER_CUBIC)
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image_resized = cv2.resize(image_rgb, (width, height))
     image_array = (image_resized/255.).astype('float32')
