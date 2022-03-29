@@ -8,6 +8,8 @@ import numpy as np
 
 imageTrain_dir = r'storage\imageTrain'
 feature_ds_path = r'storage\model\feature_ds\feature_ds.npz'
+if not os.path.exists(r'storage\model\feature_ds'):
+    os.makedirs(r'storage\model\feature_ds')
 
 def create_feature_ds():
     data_train_enriched()

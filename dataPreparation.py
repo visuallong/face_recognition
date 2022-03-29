@@ -8,6 +8,10 @@ import shutil
 
 imageBase_dir = r'storage\imageBase'
 imageTrain_dir = r'storage\imageTrain'
+if not os.path.exists(imageBase_dir):
+    os.makedirs(imageBase_dir)
+if not os.path.exists(imageTrain_dir):
+    os.makedirs(imageTrain_dir)
 
 def data_train_enriched():   
     if os.path.exists(imageTrain_dir):
