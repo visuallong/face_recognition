@@ -1,10 +1,9 @@
-from email.mime import message
 import tkinter as tk
 from tkinter import font as tkfont
 from tkinter import messagebox,PhotoImage
 import cv2
 from PIL import Image, ImageTk, ImageDraw, ImageFont
-from faceDetect import face_detector
+from faceDetecttion import face_detector
 import time
 import json
 import os
@@ -18,7 +17,6 @@ from typing import Tuple
 import numpy as np
 import imutils
 import  time
-from trainModel import train_model_landmark
 
 
 names = []
@@ -265,7 +263,7 @@ class PageThree(tk.Frame):
         self.tab3.rowconfigure(0, weight=1)
         self.tab3.rowconfigure(1, weight=1)
         self.tab3.rowconfigure(2, weight=1)
-        self.notebook.add(self.tab1, text="Train Model", compound=tk.TOP)
+        # self.notebook.add(self.tab1, text="Train Model", compound=tk.TOP)
         self.notebook.add(self.tab2, text="Create Feature Dataset", compound=tk.TOP)
         # self.notebook.add(self.tab3, text="Train Classify", compound=tk.TOP)
         self.back_btn = tk.Button(self, text="Back", bg="#ffffff", fg="#263942", command=lambda:self.cancel())
@@ -315,7 +313,7 @@ class PageThree(tk.Frame):
         epochs = self.epochs_var.get()
         batch_size = self.batch_size_var.get()
         lr = self.lr_var.get()
-        train_model_landmark(batch_size,lr,epochs)
+        # train_model_landmark(batch_size,lr,epochs)
 
     def train_classify_view(self, event):
         self.activate_classify_method = self.method_classify_var.get()

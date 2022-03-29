@@ -6,14 +6,14 @@ import time
 
 feature_ds_path = r'storage\model\feature_ds\feature_ds.npz'
 
-
 def cosine_similarity_classify(face_pixels):
     t1_start = time.process_time()
     if os.path.exists(feature_ds_path):
         feature_ds = np.load(feature_ds_path)
+    else:
+        return None, None
     probability_list = []
     audit_feature = feature_extraction(face_pixels)
-    # audit_feature = feature_extraction_deep_rank(face_pixels)
     for feature in feature_ds['feature']:
         probability = np.dot(audit_feature, feature)/(np.linalg.norm(audit_feature)*np.linalg.norm(feature))
         probability_list.append(probability)

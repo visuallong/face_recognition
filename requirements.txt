@@ -7,3 +7,4 @@ Pillow==9.0.1
 Tkinter==0.1.0
 facenet_pytorch==2.5.2
 mediapipe
+gdown
