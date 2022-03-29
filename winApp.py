@@ -12,7 +12,7 @@ from tkinter.filedialog import askopenfilenames, askopenfilename, askdirectory
 from tkinter.ttk import Notebook
 from tkinter import ttk 
 from featureDataset import create_feature_ds
-from featureClassification import cosine_similarity_classify
+from featureClassification import compare
 from typing import Tuple
 import numpy as np
 import imutils
@@ -1066,12 +1066,12 @@ class webcam(tk.Toplevel):
         show = None
         # print(self.controller.activate_classify_method)
         if self.controller.activate_classify_method == "Cosine Similarity":
-            label, prob = cosine_similarity_classify(face_pixels)
-            if prob < 85.0:
+            label, min_dist = compare(face_pixels)
+            if min_dist < 1.0:
                 label = 'Unknown'
                 show = 'User : %s' % (label)
             else:
-                show = 'User : %s \n Prob: %.1f' % (label, prob) + '%'
+                show = 'User : %s \n Distance: %.1f' % (label, min_dist) + '%'
         return show
 
 def cv2_img_add_text(img, text, left_corner: Tuple[int, int], text_rgb_color=(255, 0, 0), text_size=24, font=r'storage\something\arial.ttc', **option):

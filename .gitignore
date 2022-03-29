@@ -133,4 +133,4 @@ storage/imageBase
 storage/imageTrain
 storage/something/users.json
 featureExtraction copy.py
-storage/model/feature_extraction_model/mobilefacenet.tflite
+
