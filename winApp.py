@@ -985,7 +985,6 @@ class webcam(tk.Toplevel):
                 if self.menuvar.get() == "Webcam":
                     try:
                         is_true, frame, faces, faces_location = self.vid.get_face_detected()
-                        print(is_mask_list)
                     except Exception as e:
                         is_true = frame = faces = faces_location = None
                         # print(e)
