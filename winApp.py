@@ -3,7 +3,7 @@ from tkinter import font as tkfont
 from tkinter import messagebox,PhotoImage
 import cv2
 from PIL import Image, ImageTk, ImageDraw, ImageFont
-from faceDetecttion import face_detector
+from faceDetection import face_detector
 import time
 import json
 import os

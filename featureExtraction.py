@@ -1010,7 +1010,12 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 
 
 model = load_model_()
-target_size = (224,224)
+input_shape = model.layers[0].input_shape
+if type(input_shape) == list:
+	input_shape = input_shape[0][1:3]
+else:
+	input_shape = input_shape[1:3]
+target_size = input_shape
 
 def img_normalize(face_pixels):
 	face_pixels = face_pixels.astype('float64')
@@ -1047,8 +1052,8 @@ def feature_extraction(face_pixels):
 # import time
 
 # x= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\2\2022-03-01_082218603567.png')
-# # y= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\2\2022-03-01_082213267423.png')
-# y= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\1\2022-03-01_082159122334.png')
+# y= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\2\2022-03-01_082213267423.png')
+# # y= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\1\2022-03-01_082159122334.png')
 # t1= time.process_time()
 # feature=feature_extraction(x)
 # audit_feature=feature_extraction(y)
