@@ -98,12 +98,12 @@ class MainUI(tk.Tk):
         faces_location = []
         global activate_face_detect_method
         if activate_face_detect_method == "SSD Mobilenet":
-            faces_img, faces_location, is_mask_list = face_detector(img)
+            faces_img, faces_location = face_detector(img)
         if faces_img:
             for face_location in faces_location:
                 (x, y, w, h) = face_location
                 cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
-        return (cv2.cvtColor(img, cv2.COLOR_BGR2RGB), faces_img, faces_location, is_mask_list)
+        return (cv2.cvtColor(img, cv2.COLOR_BGR2RGB), faces_img, faces_location)
         
 
 class StartPage(tk.Frame):
@@ -173,7 +173,7 @@ class PageOne(tk.Frame):
                         if file_path.lower().endswith(('.png', '.jpg', '.jpeg')):
                             img = cv2.imread(file_path)
                             try:
-                                frame, faces, faces_location, is_mask_list = self.controller.get_face_detected(img)
+                                frame, faces, faces_location = self.controller.get_face_detected(img)
                             except Exception as e:
                                 faces = None
                                 print(e)
@@ -754,7 +754,7 @@ class PageSix(tk.Frame):
             for file_path in file_path_list:
                 loaded_image = cv2.imread(file_path)
                 try:
-                    frame, faces_img, faces_location, is_mask_list = self.controller.get_face_detected(loaded_image)
+                    frame, faces_img, faces_location = self.controller.get_face_detected(loaded_image)
                 except Exception as e:
                     faces_img = None
                     print(e)
@@ -903,7 +903,7 @@ class webcam(tk.Toplevel):
                 fld_name = fld_list[names.index(self.controller.activate_name)]
                 fld_path = os.path.join(r'storage\imageBase', fld_name)
                 loaded_image = cv2.imread(file_path)
-                frame, faces_img, faces_location, is_mask_list = self.controller.get_face_detected(loaded_image)
+                frame, faces_img, faces_location = self.controller.get_face_detected(loaded_image)
                 if faces_img:
                     i = 0
                     for face_img in faces_img:
@@ -929,7 +929,7 @@ class webcam(tk.Toplevel):
     def snapshot(self):
         self.btn_snapshot.configure(command=self.disable)
         if self.mode == "PageSix":
-            is_true, frame, faces_image, faces_location, is_mask_list = self.vid.get_face_detected()
+            is_true, frame, faces_image, faces_location = self.vid.get_face_detected()
             if is_true:
                 fld_name = fld_list[names.index(self.controller.activate_name)]
                 fld_path = os.path.join(r'storage\imageBase', fld_name)
@@ -953,7 +953,7 @@ class webcam(tk.Toplevel):
                     if messagebox.showerror("Error", "No face detected"):
                         self.btn_snapshot.configure(command=self.snapshot)
         elif self.mode == "PageFour":
-            is_true, frame, faces_image, faces_location, is_mask_list = self.vid.get_face_detected()
+            is_true, frame, faces_image, faces_location = self.vid.get_face_detected()
             if is_true:
                 fld_name = fld_list[names.index(self.controller.activate_name)]
                 fld_path = os.path.join(r'storage\imageBase', fld_name)
@@ -984,7 +984,7 @@ class webcam(tk.Toplevel):
             if self.is_on:
                 if self.menuvar.get() == "Webcam":
                     try:
-                        is_true, frame, faces, faces_location, is_mask_list = self.vid.get_face_detected()
+                        is_true, frame, faces, faces_location = self.vid.get_face_detected()
                         print(is_mask_list)
                     except Exception as e:
                         is_true = frame = faces = faces_location = None
@@ -1046,7 +1046,7 @@ class webcam(tk.Toplevel):
                 resize_img = imutils.resize(img, width=640)
             else:
                 resize_img = img
-            frame, faces, faces_location, is_mask_list = self.controller.get_face_detected(resize_img)
+            frame, faces, faces_location = self.controller.get_face_detected(resize_img)
             if faces:
                 for i, face in enumerate(faces):
                     user_info = self.get_face_info(face)
@@ -1116,12 +1116,12 @@ class video_capture:
                 faces_location = []
                 global activate_face_detect_method
                 if activate_face_detect_method == "SSD Mobilenet":
-                    faces_img, faces_location, is_mask_list = face_detector(frame)
+                    faces_img, faces_location = face_detector(frame)
                 if faces_img:
                     for face_location in faces_location:
                         (x, y, w, h) = face_location
                         cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 2)
-                return (is_true, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), faces_img, faces_location, is_mask_list)
+                return (is_true, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), faces_img, faces_location)
             else:
                 return (is_true, None, None, None, None)
         else:

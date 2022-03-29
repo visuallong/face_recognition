@@ -212,3 +212,11 @@ def sigmoid(data: np.ndarray) -> np.ndarray:
         (ndarray) Sigmoid activation of the data with element range (0,1]
     """
     return 1 / (1 + np.exp(-data))
+
+
+# import cv2
+
+# x = cv2.imread(r'C:\Trong\python\st\data\A.Long\long1.jpg')
+# a,b = face_detector(x)
+# cv2.imshow('a',a[0])
+# cv2.waitKey()
