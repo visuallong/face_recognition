@@ -6,10 +6,10 @@ from featureExtraction import feature_extraction
 import numpy as np
 
 
-imageTrain_dir = r'storage\imageTrain'
-feature_ds_path = r'storage\model\feature_ds\feature_ds.npz'
-if not os.path.exists(r'storage\model\feature_ds'):
-    os.makedirs(r'storage\model\feature_ds')
+imageTrain_dir = r'storage/imageTrain'
+feature_ds_path = r'storage/model/feature_ds/feature_ds.npz'
+if not os.path.exists(r'storage/model/feature_ds'):
+    os.makedirs(r'storage/model/feature_ds')
 
 def create_feature_ds():
     data_train_enriched()
@@ -41,7 +41,7 @@ def create_feature_ds():
 def read_user_json():
     names = []
     fld_list = []
-    with open(r'storage\something\users.json', encoding='utf-8') as json_file:
+    with open(r'storage/something/users.json', encoding='utf-8') as json_file:
         data = json.load(json_file)
         users = data['users']
         for user in users:

@@ -55,7 +55,7 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 	model.add(Convolution2D(2622, (1, 1)))
 	model.add(Flatten())
 	model.add(Activation('softmax'))
-	output = r'storage\model\feature_extraction_model\vgg_face_weights.h5'
+	output = r'storage/model/feature_extraction_model/vgg_face_weights.h5'
 	if os.path.isfile(output) != True:
 		print("vgg_face_weights.h5 will be downloaded...")
 		gdown.download(url, output, quiet=False)
@@ -281,7 +281,7 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 	
 # 	#-----------------------------------
 
-# 	model_path = r'storage\model\feature_extraction_model\openface_weights.h5'
+# 	model_path = r'storage/model/feature_extraction_model/openface_weights.h5'
 
 # 	if os.path.isfile(model_path) != True:
 # 		print("openface_weights.h5 will be downloaded...")
@@ -313,18 +313,18 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 	
 # 	#---------------------------------
 	
-# 	model_path = r'storage\model\feature_extraction_model\VGGFace2_DeepFace_weights_val-0.9034.h5\VGGFace2_DeepFace_weights_val-0.9034.h5'
+# 	model_path = r'storage/model/feature_extraction_model/VGGFace2_DeepFace_weights_val-0.9034.h5/VGGFace2_DeepFace_weights_val-0.9034.h5'
 	
 # 	if os.path.isfile(model_path) != True:
 # 		print("VGGFace2_DeepFace_weights_val-0.9034.h5 will be downloaded...")
 		
-# 		output = r'storage\model\feature_extraction_model\VGGFace2_DeepFace_weights_val-0.9034.h5.zip'
+# 		output = r'storage/model/feature_extraction_model/VGGFace2_DeepFace_weights_val-0.9034.h5.zip'
 		
 # 		gdown.download(url, output, quiet=False)
 		
 # 		#unzip VGGFace2_DeepFace_weights_val-0.9034.h5.zip
 # 		with zipfile.ZipFile(output, 'r') as zip_ref:
-# 			zip_ref.extractall(r'storage\model\feature_extraction_model\VGGFace2_DeepFace_weights_val-0.9034.h5')
+# 			zip_ref.extractall(r'storage/model/feature_extraction_model/VGGFace2_DeepFace_weights_val-0.9034.h5')
 		
 # 	base_model.load_weights(model_path)	
 	
@@ -852,7 +852,7 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 
 # 	#-----------------------------------
 
-# 	model_path = r'storage\model\feature_extraction_model\facenet_weights.h5'
+# 	model_path = r'storage/model/feature_extraction_model/facenet_weights.h5'
 
 # 	if os.path.isfile(model_path) != True:
 # 		print("facenet_weights.h5 will be downloaded...")
@@ -874,7 +874,7 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 
 # #     #-------------------------
 
-# #     model_path = r'storage\model\feature_extraction_model\facenet512_weights.h5'
+# #     model_path = r'storage/model/feature_extraction_model/facenet512_weights.h5'
 
 # #     if os.path.isfile(model_path) != True:
 # #         print("facenet512_weights.h5 will be downloaded...")
@@ -905,7 +905,7 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 # 	#---------------------------------------
 # 	#check the availability of pre-trained weights
 
-# 	model_path = r'storage\model\feature_extraction_model\arcface_weights.h5'
+# 	model_path = r'storage/model/feature_extraction_model/arcface_weights.h5'
 
 # 	if os.path.isfile(model_path) != True:
 # 		output = model_path
@@ -997,7 +997,7 @@ def load_model_(url = 'https://github.com/serengil/deepface_models/releases/down
 
 # 	#---------------------------------
 
-# 	model_path = r'storage\model\feature_extraction_model\deepid_keras_weights.h5'
+# 	model_path = r'storage/model/feature_extraction_model/deepid_keras_weights.h5'
 # 	if os.path.isfile(model_path) != True:
 # 		print("deepid_keras_weights.h5 will be downloaded...")
 
@@ -1051,9 +1051,9 @@ def feature_extraction(face_pixels):
 # import cv2
 # import time
 
-# x= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\2\2022-03-01_082218603567.png')
-# y= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\2\2022-03-01_082213267423.png')
-# # y= cv2.imread(r'C:\Trong\Projects\faceReg\faceReg\media\detectedFaces\1\2022-03-01_082159122334.png')
+# x= cv2.imread(r'C:/Trong/Projects/faceReg/faceReg/media/detectedFaces/2/2022-03-01_082218603567.png')
+# y= cv2.imread(r'C:/Trong/Projects/faceReg/faceReg/media/detectedFaces/2/2022-03-01_082213267423.png')
+# # y= cv2.imread(r'C:/Trong/Projects/faceReg/faceReg/media/detectedFaces/1/2022-03-01_082159122334.png')
 # t1= time.process_time()
 # feature=feature_extraction(x)
 # audit_feature=feature_extraction(y)
