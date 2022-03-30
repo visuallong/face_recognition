@@ -41,14 +41,14 @@ def nms(P: torch.tensor, thresh_iou: float):
         order = order[mask]
     return keep
 
-face_detect_model_path = r'storage\model\face_detection_model\face_detection_short_range.tflite'
+face_detect_model_path = r'storage/model/face_detection_model/face_detection_short_range.tflite'
 face_detect_model_url = 'https://drive.google.com/u/0/uc?id=1U6s_ayAMMPo1HArdwgfbJrXSXBHloeiQ&export=download'
 if os.path.isfile(face_detect_model_path) != True:
 		print("face_detection_short_range.tflite will be downloaded...")
 		gdown.download(url=face_detect_model_url, output=face_detect_model_path, quiet=False)
 interpreter = tf.lite.Interpreter(model_path=face_detect_model_path)
 interpreter.allocate_tensors()
-mask_detect_model_path = r'storage\model\extended_model\mask_detector.h5'
+mask_detect_model_path = r'storage/model/extended_model/mask_detector.h5'
 mask_detect_model_url = 'https://drive.google.com/u/0/uc?id=1AKn_xhcLf2A4xcEzM9hYY844ZnlFTbwx&export=download'
 if os.path.isfile(mask_detect_model_path) != True:
 		print("mask_detector.h5 will be downloaded...")
@@ -216,7 +216,7 @@ def sigmoid(data: np.ndarray) -> np.ndarray:
 
 # import cv2
 
-# x = cv2.imread(r'C:\Trong\python\st\data\A.Long\long1.jpg')
+# x = cv2.imread(r'C:/Trong/python/st/data/A.Long/long1.jpg')
 # a,b = face_detector(x)
 # cv2.imshow('a',a[0])
 # cv2.waitKey()

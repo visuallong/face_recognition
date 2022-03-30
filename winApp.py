@@ -64,12 +64,12 @@ class MainUI(tk.Tk):
             user_json = {'name':name, 'fld_name':fld_list[i]}    
             users_json.append(user_json)
         data = {'users':users_json}
-        with open(r'storage\something\users.json', 'w', encoding='utf-8') as f:
+        with open(r'storage/something/users.json', 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
     
     def read_user_json(self):
         global names, fld_list
-        with open(r'storage\something\users.json', encoding='utf-8') as json_file:
+        with open(r'storage/something/users.json', encoding='utf-8') as json_file:
             data = json.load(json_file)
             users = data['users']
             for user in users:
@@ -82,14 +82,14 @@ class MainUI(tk.Tk):
         global names, fld_list
         activate_fld = fld_list[names.index(self.activate_name)]
         fld_list.remove(activate_fld)
-        shutil.rmtree(os.path.join('storage\imageBase', activate_fld))
+        shutil.rmtree(os.path.join('storage/imageBase', activate_fld))
         names.remove(self.activate_name)
         self.update_json_file()
     
     def remove_all_samples(self):
         global names, fld_list
         activate_fld = fld_list[names.index(self.activate_name)]
-        fld_dir = os.path.join('storage\imageBase', activate_fld)
+        fld_dir = os.path.join('storage/imageBase', activate_fld)
         for f in os.listdir(fld_dir):
             os.remove(os.path.join(fld_dir, f))
 
@@ -110,7 +110,7 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
             tk.Frame.__init__(self, parent)
             self.controller = controller
-            render = PhotoImage(file=r'storage\something\homepagepic.png')
+            render = PhotoImage(file=r'storage/something/homepagepic.png')
             img = tk.Label(self, image=render)
             img.image = render
             img.grid(row=0, column=1, rowspan=5, sticky="nsew")
@@ -160,11 +160,11 @@ class PageOne(tk.Frame):
                 if os.path.isdir(sub_fld_path):
                     names.append(sub_fld_name)
                     t = time.strftime("%d-%m-%y-%H-%M-%S")
-                    save_fld_path = os.path.join(r'storage\imageBase', t)
+                    save_fld_path = os.path.join(r'storage/imageBase', t)
                     if os.path.exists(save_fld_path):
                         t += '_{}'.format(k)
                         k += 1
-                        save_fld_path = os.path.join(r'storage\imageBase', t)
+                        save_fld_path = os.path.join(r'storage/imageBase', t)
                     os.makedirs(save_fld_path)
                     fld_list.append(t)
                     count = 0
@@ -246,9 +246,9 @@ class PageThree(tk.Frame):
         self.rowconfigure(2, minsize=25)
         self.controller = controller
         self.show_opt = False
-        # icon_1 = PhotoImage(file=r'storage\something\question.png')
-        # icon_2 = PhotoImage(file=r'storage\something\restore.png')
-        # icon_3 = PhotoImage(file=r'storage\something\graph.png')
+        # icon_1 = PhotoImage(file=r'storage/something/question.png')
+        # icon_2 = PhotoImage(file=r'storage/something/restore.png')
+        # icon_3 = PhotoImage(file=r'storage/something/graph.png')
         self.label = tk.Label(self, text="Training", font=self.controller.title_font,fg="#263942", anchor="center")
         self.label.grid(row=0, column=0)
         self.notebook = Notebook(self)
@@ -356,7 +356,7 @@ class PageFour(tk.Frame):
         self.rowconfigure(4, minsize=25)
         self.webcam_ = None
         global names, fld_list
-        self.add_img = tk.PhotoImage(file=r'storage\something\add.png')
+        self.add_img = tk.PhotoImage(file=r'storage/something/add.png')
         tk.Label(self, text="Select user", fg="#263942", font='Helvetica 12 bold').grid(row=0, column=0, padx=10, pady=10)
         self.btn_back = tk.Button(self, text="Back", bg="#ffffff", fg="#263942", command=self.cancel)
         self.menuvar = tk.StringVar()
@@ -374,8 +374,8 @@ class PageFour(tk.Frame):
         self.frame = tk.Frame(self.canvas)
         self.frame.bind("<Configure>", self.reset_scrollregion)
         self.canvas.create_window((0,0), window=self.frame, anchor='nw')
-        self.edit_img = tk.PhotoImage(file=r'storage\something\edit.png')
-        self.show_more_img = tk.PhotoImage(file=r'storage\something\show_more.png')
+        self.edit_img = tk.PhotoImage(file=r'storage/something/edit.png')
+        self.show_more_img = tk.PhotoImage(file=r'storage/something/show_more.png')
         self.classname_txt = tk.StringVar()
         self.classname = tk.Entry(self, textvariable=self.classname_txt, font='Helvetica 12 bold', width=10)
         self.btn_edit = tk.Button(self, image=self.edit_img, command=self.edit_classname)     
@@ -400,7 +400,7 @@ class PageFour(tk.Frame):
             return
         global names, fld_list
         self.fld = fld_list[names.index(self.menuvar.get())]
-        self.fld_path = os.path.join(r'storage\imageBase', self.fld)
+        self.fld_path = os.path.join(r'storage/imageBase', self.fld)
         number = len(os.listdir(self.fld_path))
         photo_label = []
         k=None
@@ -487,12 +487,12 @@ class PageFour(tk.Frame):
             return
         activate_fld = fld_list[names.index(self.controller.activate_name)]
         fld_list.remove(activate_fld)
-        shutil.rmtree(os.path.join('storage\imageBase', activate_fld))
+        shutil.rmtree(os.path.join('storage/imageBase', activate_fld))
         names.remove(self.controller.activate_name)
         names.append(self.classname_txt.get())
         fld_name = time.strftime("%d-%m-%y-%H-%M-%S")
         fld_list.append(fld_name)
-        os.makedirs(os.path.join('storage\imageBase',fld_name))
+        os.makedirs(os.path.join('storage/imageBase',fld_name))
         self.controller.activate_name = self.classname_txt.get()
         self.controller.update_json_file()
         self.controller.frames["PageFour"].refresh_names()
@@ -520,7 +520,7 @@ class PageFour(tk.Frame):
     def cancel(self):
         if self.controller.activate_name:
             fld_name = fld_list[names.index(self.controller.activate_name)]
-            fld_path = os.path.join(r'storage\imageBase', fld_name)
+            fld_path = os.path.join(r'storage/imageBase', fld_name)
             if len(os.listdir(fld_path)) < 8:
                 if messagebox.askokcancel("Warning", "Database for this user not enough 8 images.\nDo you want continues go back?"):
                     self.defaults()
@@ -579,7 +579,7 @@ class PageFive(tk.Frame):
         names.append(name)
         fld_name = time.strftime("%d-%m-%y-%H-%M-%S")
         fld_list.append(fld_name)
-        os.makedirs(os.path.join('storage\imageBase',fld_name))
+        os.makedirs(os.path.join('storage/imageBase',fld_name))
         self.controller.activate_name = name
         self.controller.update_json_file()
         self.controller.frames["PageFour"].refresh_names()
@@ -604,11 +604,11 @@ class PageSix(tk.Frame):
         self.webcam_ = None
         self.controller = controller
         self.parent = parent
-        self.add_img = tk.PhotoImage(file=r'storage\something\add.png')
-        self.upload_img = tk.PhotoImage(file=r'storage\something\upload.png')
-        self.webcam_img = tk.PhotoImage(file=r'storage\something\webcam.png')
-        self.edit_img = tk.PhotoImage(file=r'storage\something\edit.png')
-        self.show_more_img = tk.PhotoImage(file=r'storage\something\show_more.png')
+        self.add_img = tk.PhotoImage(file=r'storage/something/add.png')
+        self.upload_img = tk.PhotoImage(file=r'storage/something/upload.png')
+        self.webcam_img = tk.PhotoImage(file=r'storage/something/webcam.png')
+        self.edit_img = tk.PhotoImage(file=r'storage/something/edit.png')
+        self.show_more_img = tk.PhotoImage(file=r'storage/something/show_more.png')
         self.classname_txt = tk.StringVar()
         self.classname = tk.Entry(self, textvariable=self.classname_txt, font='Helvetica 12 bold', width=10)
         self.classname.grid(row=0,column=0)
@@ -652,12 +652,12 @@ class PageSix(tk.Frame):
             return
         activate_fld = fld_list[names.index(self.controller.activate_name)]
         fld_list.remove(activate_fld)
-        shutil.rmtree(os.path.join('storage\imageBase', activate_fld))
+        shutil.rmtree(os.path.join('storage/imageBase', activate_fld))
         names.remove(self.controller.activate_name)
         names.append(self.classname_txt.get())
         fld_name = time.strftime("%d-%m-%y-%H-%M-%S")
         fld_list.append(fld_name)
-        os.makedirs(os.path.join('storage\imageBase',fld_name))
+        os.makedirs(os.path.join('storage/imageBase',fld_name))
         self.controller.activate_name = self.classname_txt.get()
         self.controller.update_json_file()
         self.controller.frames["PageFour"].refresh_names()
@@ -692,7 +692,7 @@ class PageSix(tk.Frame):
         photo_label = []
         global names, fld_list
         self.fld = fld_list[names.index(self.controller.activate_name)]
-        self.fld_path = os.path.join(r'storage\imageBase', self.fld)
+        self.fld_path = os.path.join(r'storage/imageBase', self.fld)
         number = len(os.listdir(self.fld_path))
         self.samples_label['text'] = str(number) + ' image samples:'
         self.samples_label.grid(row=2,column=0)
@@ -749,7 +749,7 @@ class PageSix(tk.Frame):
         file_path_list = askopenfilenames(filetypes=[('Image Files', '*jpeg'), ('Image Files', '*jpg'), ('Image Files', '*png')])
         if file_path_list != '':
             fld_name = fld_list[names.index(self.controller.activate_name)]
-            fld_path = os.path.join(r'storage\imageBase', fld_name)
+            fld_path = os.path.join(r'storage/imageBase', fld_name)
             count = 0
             for file_path in file_path_list:
                 loaded_image = cv2.imread(file_path)
@@ -779,7 +779,7 @@ class PageSix(tk.Frame):
 
     def cancel(self):
         fld_name = fld_list[names.index(self.controller.activate_name)]
-        fld_path = os.path.join(r'storage\imageBase', fld_name)
+        fld_path = os.path.join(r'storage/imageBase', fld_name)
         if len(os.listdir(fld_path)) < 8:
             if messagebox.askokcancel("Warning", "Database for this user not enough 8 images.\nDo you want continues go back?"):
                 self.controller.show_frame("PageFive")
@@ -815,16 +815,16 @@ class webcam(tk.Toplevel):
         self.title('Webcam')
         self.mode = None
         self.photo_gray = None      
-        self.webcam_img = tk.PhotoImage(file=r'storage\something\webcam.png')
-        self.add_image_img = tk.PhotoImage(file=r'storage\something\add_image.png')
-        add_image_img_gray_ = cv2.cvtColor(cv2.imread(r'storage\something\add_image.png'), cv2.COLOR_BGR2GRAY)
+        self.webcam_img = tk.PhotoImage(file=r'storage/something/webcam.png')
+        self.add_image_img = tk.PhotoImage(file=r'storage/something/add_image.png')
+        add_image_img_gray_ = cv2.cvtColor(cv2.imread(r'storage/something/add_image.png'), cv2.COLOR_BGR2GRAY)
         add_image_img_gray_arr = Image.fromarray(add_image_img_gray_)
         self.add_image_img_gray = ImageTk.PhotoImage(add_image_img_gray_arr)
         self.loaded_photo = self.add_image_img
         self.loaded_photo_gray = self.add_image_img_gray
         self.iconphoto(False, self.webcam_img)
-        self.on_img = tk.PhotoImage(file=r'storage\something\toggle_on.png')
-        self.off_img = tk.PhotoImage(file=r'storage\something\toggle_off.png')
+        self.on_img = tk.PhotoImage(file=r'storage/something/toggle_on.png')
+        self.off_img = tk.PhotoImage(file=r'storage/something/toggle_off.png')
         self.input = tk.Label(self, text="Input")       
         self.is_on = True
         self.status = tk.Label(self, text="On")
@@ -901,7 +901,7 @@ class webcam(tk.Toplevel):
             file_path = askopenfilename(filetypes=[('Image Files', '*jpeg'), ('Image Files', '*jpg'), ('Image Files', '*png')])
             if file_path != '':
                 fld_name = fld_list[names.index(self.controller.activate_name)]
-                fld_path = os.path.join(r'storage\imageBase', fld_name)
+                fld_path = os.path.join(r'storage/imageBase', fld_name)
                 loaded_image = cv2.imread(file_path)
                 frame, faces_img, faces_location = self.controller.get_face_detected(loaded_image)
                 if faces_img:
@@ -932,7 +932,7 @@ class webcam(tk.Toplevel):
             is_true, frame, faces_image, faces_location = self.vid.get_face_detected()
             if is_true:
                 fld_name = fld_list[names.index(self.controller.activate_name)]
-                fld_path = os.path.join(r'storage\imageBase', fld_name)
+                fld_path = os.path.join(r'storage/imageBase', fld_name)
                 if faces_image:
                     i = 0
                     for face_image in faces_image:
@@ -956,7 +956,7 @@ class webcam(tk.Toplevel):
             is_true, frame, faces_image, faces_location = self.vid.get_face_detected()
             if is_true:
                 fld_name = fld_list[names.index(self.controller.activate_name)]
-                fld_path = os.path.join(r'storage\imageBase', fld_name)
+                fld_path = os.path.join(r'storage/imageBase', fld_name)
                 if faces_image:
                     for face_image in faces_image:
                         if len(os.listdir(fld_path)) < 8: 
@@ -1074,7 +1074,7 @@ class webcam(tk.Toplevel):
                 show = 'User : %s \n Prob: %.3f' % (label, prob)
         return show
 
-def cv2_img_add_text(img, text, left_corner: Tuple[int, int], text_rgb_color=(255, 0, 0), text_size=24, font=r'storage\something\arial.ttc', **option):
+def cv2_img_add_text(img, text, left_corner: Tuple[int, int], text_rgb_color=(255, 0, 0), text_size=24, font=r'storage/something/arial.ttc', **option):
     pil_img = img
     if isinstance(pil_img, np.ndarray):
         pil_img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
@@ -1132,5 +1132,5 @@ class video_capture:
 
 
 app = MainUI()
-app.iconphoto(False, tk.PhotoImage(file=r'storage\something\facerecog.png'))
+app.iconphoto(False, tk.PhotoImage(file=r'storage/something/facerecog.png'))
 app.mainloop()

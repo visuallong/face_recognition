@@ -4,7 +4,7 @@ import os
 import time
 
 
-feature_ds_path = r'storage\model\feature_ds\feature_ds.npz'
+feature_ds_path = r'storage/model/feature_ds/feature_ds.npz'
 
 def cosine_similarity_classify(face_pixels):
     t1_start = time.process_time()
@@ -56,5 +56,5 @@ def compare(face_pixels):
 
 # import cv2
 
-# x= cv2.imread(r'storage\imageBase\29-03-22-17-14-19_0\img-29-03-22-17-14-19_0.jpg')
+# x= cv2.imread(r'storage/imageBase/29-03-22-17-14-19_0/img-29-03-22-17-14-19_0.jpg')
 # print(compare(x))

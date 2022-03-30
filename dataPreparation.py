@@ -6,8 +6,8 @@ import PIL
 import shutil
 
 
-imageBase_dir = r'storage\imageBase'
-imageTrain_dir = r'storage\imageTrain'
+imageBase_dir = r'storage/imageBase'
+imageTrain_dir = r'storage/imageTrain'
 if not os.path.exists(imageBase_dir):
     os.makedirs(imageBase_dir)
 if not os.path.exists(imageTrain_dir):
