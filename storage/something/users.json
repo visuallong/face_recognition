@@ -3,6 +3,7 @@
         {
             "name": "None",
             "fld_name": "None"
+<<<<<<< HEAD
         },
         {
             "name": "Trọng",
@@ -63,6 +64,8 @@
         {
             "name": "XuanAnh",
             "fld_name": "29-03-22-17-52-15"
+=======
+>>>>>>> 37c0d6c9b29b97445c875a0e7d4b9649aa70aa97
         }
     ]
 }
