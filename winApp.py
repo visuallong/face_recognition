@@ -832,8 +832,8 @@ class webcam(tk.Toplevel):
         self.toggle_btn.configure(image=self.on_img, command=lambda:self.switch())  
         self.menuvar = tk.StringVar()
         self.menuvar.set('Webcam')
-        self.canvas = tk.Canvas(self,width=self.vid.width,height=self.vid.height,bg='black')
-        self.label = tk.Label(self,image=self.add_image_img,width=self.vid.width,height=self.vid.height)
+        self.canvas = tk.Canvas(self,width=640,height=480,bg='black')
+        self.label = tk.Label(self,image=self.add_image_img,width=640,height=480)
         self.label.bind("<Button-1>", lambda e:self.upload_file())
         self.btn_snapshot = tk.Button(self,text='Snapshot',width=30,bg='goldenrod2',activebackground='red',command=self.snapshot)
         self.dropdown = tk.OptionMenu(self, self.menuvar, *input_chosser)
@@ -1100,6 +1100,7 @@ class video_capture:
     def get_frame(self):
         if self.vid.isOpened():
             is_true, frame = self.vid.read()
+            frame = cv2.resize(frame, (640,480))
             if is_true:
                 return (is_true, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
             else:
@@ -1110,6 +1111,7 @@ class video_capture:
     def get_face_detected(self):
         if self.vid.isOpened():
             is_true, frame = self.vid.read()
+            frame = cv2.resize(frame, (640,480))
             if is_true:
                 faces_img = []
                 faces_location = []
